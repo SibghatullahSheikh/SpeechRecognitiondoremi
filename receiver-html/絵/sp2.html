@@ -1,0 +1,453 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<script type="text/javascript">
+//[要変更]ここにWebsocket プロキシサーバのURLをセットします。
+var serverURL = "ws://kgr.cs.inf.shizuoka.ac.jp:10808/";
+//[要変更]ここにチャンネル文字列（半角英数字・ブラウザ側と同じ文字列）をセットします
+var channel = "cs12084";
+
+
+window.onload = function(){
+    var X = -1;
+    var Y = -1;
+    if(channel == "" || serverURL == ""){
+        document.getElementById('messageBar').innerHTML = '[ERROR] チャンネルもしくはURLが空です。';
+        return;
+    }
+    //背景を白に塗る
+    var ctx = document.getElementById('myCanvas').getContext('2d');
+    ctx.strokeStyle = "rgb(0,0,0)";
+    ctx.strokeRect(0, 0, 678, 399);
+
+//メソッド群
+    
+    function person() {
+    ctx.clearRect(1, 1, 676, 397);
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.arc(350, 50, 32, 0, 2 * Math.PI, true);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(323, 90, 55, 150);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+//左手    
+    ctx.beginPath();
+    ctx.moveTo(310, 100);
+    ctx.lineTo(260, 50); 
+    ctx.lineTo(240, 70); 
+    ctx.lineTo(290, 120);
+    ctx.lineTo(310, 100); 
+    
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fill();
+    
+//右手    
+    ctx.beginPath();
+    ctx.moveTo(390, 100);
+    ctx.lineTo(440, 50); 
+    ctx.lineTo(460, 70); 
+    ctx.lineTo(410, 120);
+    ctx.lineTo(390, 100); 
+    
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fill();
+    
+//左脚
+    ctx.beginPath();
+    ctx.moveTo(320, 250);
+    ctx.lineTo(320, 350); 
+    ctx.lineTo(350, 350); 
+    ctx.lineTo(350, 250);
+    ctx.lineTo(320, 250); 
+    
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fill();
+//右脚
+    ctx.beginPath();
+    ctx.moveTo(385, 250);
+    ctx.lineTo(385, 350);
+    ctx.lineTo(355, 350); 
+    ctx.lineTo(355, 250);
+    ctx.lineTo(385, 250); 
+    
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fill();
+    
+}
+
+    function piano() {
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(10, 250,280, 30);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(0, 250,10, 150);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(280, 250,10, 150);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(32, 250,16, 100);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(62, 250,16, 100);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(122, 250,16, 100);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(152, 250,16, 100);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(182, 250,16, 100);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.fillRect(242, 250,16, 100);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 280 );
+    ctx.lineTo(40, 400 );
+    ctx.closePath();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(70, 280 );
+    ctx.lineTo(70, 400 );
+    ctx.closePath();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(100, 280 );
+    ctx.lineTo(100, 400 );
+    ctx.closePath();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(130, 280 );
+    ctx.lineTo(130, 400 );
+    ctx.closePath();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(160, 280 );
+    ctx.lineTo(160, 400 );
+    ctx.closePath();
+    ctx.stroke();
+        
+    ctx.beginPath();
+    ctx.moveTo(190, 280 );
+    ctx.lineTo(190, 400 );
+    ctx.closePath();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(220, 280 );
+    ctx.lineTo(220, 400 );
+    ctx.closePath();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(250, 280 );
+    ctx.lineTo(250, 400 );
+    ctx.closePath();
+    ctx.stroke();
+    
+}
+
+    function hukidasi() {
+
+    ctx.beginPath();
+    ctx.moveTo(390, 75 );
+    ctx.lineTo(480, 150 );
+    ctx.closePath();
+    ctx.stroke();
+        
+    ctx.beginPath();
+    ctx.moveTo(485, 155 );
+    ctx.lineTo(600, 155 );
+    ctx.closePath();
+    ctx.stroke();
+        
+    ctx.beginPath();
+    ctx.moveTo(605, 150 );
+    ctx.lineTo(640, 115 );
+    ctx.closePath();
+    ctx.stroke();
+        
+    ctx.beginPath();
+    ctx.moveTo(640, 105 );
+    ctx.lineTo(605, 70 );
+    ctx.closePath();
+    ctx.stroke();
+     
+    ctx.beginPath();
+    ctx.moveTo(600, 65 );
+    ctx.lineTo(485, 65 );
+    ctx.closePath();
+    ctx.stroke();
+        
+    ctx.beginPath();
+    ctx.moveTo(480, 70 );
+    ctx.lineTo(445, 105);
+    ctx.closePath();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(440, 100 );
+    ctx.lineTo(395, 70);
+    ctx.closePath();
+    ctx.stroke();
+}
+
+
+//ここまで
+
+
+    person(); 
+
+    var webSocket = new WebSocket(serverURL);
+    webSocket.onopen = function(event){
+        document.getElementById('messageBar').innerHTML = '接続完了';
+        webSocket.send(channel + ':');
+        X = 339;
+        Y = 200;
+    };
+
+        webSocket.onmessage = function(event){
+        var msg = event.data;
+        if(msg == channel + ";"){
+            document.getElementById('messageBar').innerHTML = 'ハンドシェイク完了';
+        }else if(msg.indexOf(channel + ":") == 0){
+            //メッセージはココで受信
+            //チャンネル削除
+            msg = msg.substring(msg.indexOf(":")+1);
+            //カンマで分けて配列へ
+            var fields = msg.split(",");
+            
+            //配列最初の要素はコマンド名なので取り出します。
+            var cmd = fields.shift();
+            //コマンドに応じて処理を切り替えます。
+
+            //受信したコマンドを下部に表示
+            setCommandLabel(msg);                
+            switch(cmd){
+            case "recog":
+                //注：サーバから来たデータは文字列として扱われているため、
+                //数値を送った場合使用時はparseInt等で数値化する。
+                //recog,move,[right,left,up,down]
+                                    switch(fields[0]){
+                    case "escape":
+    ctx.clearRect(0, 0, 678, 399);
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    ctx.arc(330, 50, 32, 0, 2 * Math.PI, true);
+    ctx.fillStyle = "rgb( 0, 0, 0)";
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(330, 100);
+    ctx.lineTo(280, 150); 
+    ctx.lineTo(230, 150); 
+    ctx.lineTo(230, 180);
+    ctx.lineTo(290, 180); 
+    ctx.lineTo(320, 150);
+    ctx.lineTo(350, 220);
+    ctx.lineTo(280, 350);
+    ctx.lineTo(310, 350);
+    ctx.lineTo(380, 220);
+    ctx.lineTo(380, 290);
+    ctx.lineTo(480, 290);
+    ctx.lineTo(480, 260);
+    ctx.lineTo(410, 260);
+    ctx.lineTo(410, 200);
+    ctx.lineTo(380, 130);
+    ctx.lineTo(440, 130);  
+    ctx.lineTo(440, 180); 
+    ctx.lineTo(470, 180);
+    ctx.lineTo(470, 100); 
+
+    ctx.lineTo(330, 100);
+    
+    break;
+     
+       
+                    case "hello":
+    person(); 
+
+	hukidasi();
+
+    ctx.font = "12pt Arial";
+    ctx.fillText("こんにちは", 480, 118); 
+    
+    break;
+                    case "do":
+    person(); 
+
+	piano();
+	    
+    var audio1 = new Audio("./C3.mp3");
+    // 再生
+    audio1.play();
+    
+    break;
+                    case "re":
+                    
+    person();
+    
+	piano();
+    
+    var audio2 = new Audio("./D3.mp3");
+    // 再生
+    audio2.play();  
+    break;                  
+                    case "mi":
+                    
+    person(); 
+   
+   	piano();
+    
+    var audio3 = new Audio("./E3.mp3");
+    // 再生
+    audio3.play();  
+    break;
+                    case "fa":
+                    
+    person(); 
+
+	piano();
+	
+	var audio4 = new Audio("./F3.mp3");
+    // 再生
+    audio4.play();  
+	break;         
+                    case "so":
+                    
+    person();
+     
+	piano();
+    
+    var audio5 = new Audio("./G3.mp3");
+    // 再生
+    audio5.play();  
+    break;                     
+                    case "ra":
+                          
+    person();
+     
+	piano();
+    
+    var audio6 = new Audio("./A3.mp3");
+    // 再生
+    audio6.play();  
+    break;                     
+                    case "si":
+                    
+    person(); 
+    piano();
+    
+    var audio7 = new Audio("./B3.mp3");
+    // 再生
+    audio7.play();  
+    break;                     
+                    case "return":
+    person(); 
+    
+    break;
+        				case "login":
+    ctx.clearRect(1, 1, 676, 397);
+    person();
+    hukidasi();
+    
+        ctx.font = "12pt Arial";
+    ctx.fillText("ログインしました", 480, 118); 
+    break;
+    				case "logout":
+    ctx.clearRect(1, 1, 676, 397);
+    
+    ctx.font = "12pt Arial";
+    ctx.fillText("ログアウトしました", 480, 118);
+    break;	                 
+    		                    
+                }
+                break;
+            }
+        }else{
+            console.log(JSON.stringify(msg));
+        }
+    };
+
+    webSocket.onclose = function(event){
+        document.getElementById('time').innerHTML = 'socket closed';
+    };
+}
+
+function setCommandLabel(a){
+    document.getElementById('CommandLabel').innerHTML = "" + a;
+}
+function setXLabel(a){
+    document.getElementById('XLabel').innerHTML = "" + a;
+}
+function setYLabel(a){
+    document.getElementById('YLabel').innerHTML = "" + a;
+}
+function setCLabel(a){
+    document.getElementById('CLabel').innerHTML = "" + a;
+}
+</script>
+</head>
+<body>
+<div style="background:black;color:white;padding:3px;" id="messageBar">&nbsp;</div>
+<div>
+COMMAND: <span id="CommandLabel"></span> / 
+X: <span id="XLabel"></span> / 
+Y: <span id="YLabel"></span> / 
+C: <span id="CLabel"></span>
+</div>
+<canvas id="myCanvas" width="678" height="399"></canvas>
+</body>
+</html>
